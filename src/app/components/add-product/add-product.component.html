@@ -1,0 +1,46 @@
+<div class="form-container">
+    <div class="form-header">
+        <button class="back-button" (click)="goBack()">Atrás</button>
+        <h2>Formulario de Registro</h2>
+    </div>
+    <hr>
+    <form class="registration-form">
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id" class="form-control" required />
+            <span class="error-message">ID no válido</span>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <input type="text" id="description" name="description" class="form-control" required />
+            <span class="error-message">Este campo es requerido</span>
+        </div>
+
+        <div class="form-group">
+            <label for="logo">Logo</label>
+            <input type="text" id="logo" name="logo" class="form-control" required />
+            <span class="error-message">Este campo es requerido</span>
+        </div>
+
+        <div class="form-group">
+            <label for="release-date">Fecha Liberación</label>
+            <input type="date" id="release-date" name="release-date" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="revision-date">Fecha Revisión</label>
+            <input type="date" id="revision-date" name="revision-date" class="form-control" disabled />
+        </div>
+
+        <div class="form-actions">
+            <button type="reset" class="btn reset-btn">Reiniciar</button>
+            <button type="submit" class="btn submit-btn">Enviar</button>
+        </div>
+    </form>
+</div>

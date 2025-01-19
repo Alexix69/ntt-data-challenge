@@ -1,0 +1,114 @@
+/* Contenedor principal del componente */
+.products-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ocupa todo el espacio vertical disponible */
+  background-color: #fff; /* Fondo blanco */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  padding: 20px; /* Espacio interno para el contenido */
+}
+
+/* Header de la tabla */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.search-input {
+  width: calc(35% - 35px); /* Ocupa el ancho de dos columnas */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Contenedor de la tabla */
+.table-container {
+  flex: 1; /* Hace que la tabla ocupe el espacio restante */
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+/* Footer de la tabla */
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  height: 40px;
+}
+
+.number-selector {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-width: 300px;
+  width: 100%;
+  margin-bottom: 1rem;
+  
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f9f9f9;
+  }
+
+  img {
+    border-radius: 4px;
+  }
+}
+
+.table-container {
+  overflow-x: auto; /* Habilitar scroll horizontal si es necesario */
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #ffc107; /* Amarillo */
+  color: white;
+  border: none;
+  border-radius: 5px; /* Redondeado del botón */
+  cursor: pointer;
+  margin-left: auto; /* Alinear el botón al extremo derecho del header */
+  height: 40px; /* Mismo alto que el input de búsqueda */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: #e0a800; /* Tonalidad más oscura al hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}

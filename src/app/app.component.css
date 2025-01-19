@@ -1,0 +1,162 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eaeaea; /* Fondo gris del layout */
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Encabezado */
+.app-header {
+  background-color: #fff; /* Fondo blanco del encabezado */
+  color: #004085; /* Letras azules */
+  padding: 15px;
+  text-align: center; /* Texto centrado */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex; /* Alineación horizontal */
+  align-items: center; /* Centrado vertical de los elementos */
+  justify-content: center; /* Centrado horizontal */
+}
+
+.app-header .logo {
+  margin-right: 10px; /* Espaciado entre la imagen y el título */
+  height: 24px; /* Tamaño de la imagen (ajustar según sea necesario) */
+  width: auto; /* Mantener proporciones */
+}
+
+.app-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Layout principal */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0; /* Eliminar márgenes externos */
+  padding: 0; /* Eliminar padding interno */
+  background-color: #eaeaea; /* Fondo gris */
+}
+
+/* Componente principal de la tabla */
+.products-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ocupa todo el espacio vertical disponible */
+  background-color: #fff; /* Fondo blanco */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  padding: 20px; /* Espacio interno para el contenido */
+  width: 90%; /* Ocupa el 90% del ancho disponible */
+  max-width: 1200px; /* Ancho máximo en pantallas grandes */
+  box-sizing: border-box;
+}
+
+/* Header de la tabla */
+.table-header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+}
+
+.search-input {
+  width: 100%; /* Por defecto ocupa todo el ancho */
+  max-width: 400px; /* Ancho máximo */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Contenedor de la tabla */
+.table-container {
+  flex: 1; /* Hace que la tabla ocupe el espacio restante */
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+/* Footer de la tabla */
+.table-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.number-selector {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Media Queries para Responsividad */
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .products-layout {
+    width: 95%; /* Reduce el ancho */
+    padding: 15px; /* Reduce el padding */
+  }
+
+  .app-title {
+    font-size: 1.5rem; /* Reduce el tamaño del título */
+  }
+
+  .search-input {
+    width: 100%; /* Input ocupa todo el ancho */
+    max-width: none; /* Sin límite de ancho */
+  }
+
+  table th,
+  table td {
+    padding: 8px; /* Reduce el padding en celdas */
+  }
+
+  .number-selector {
+    font-size: 14px; /* Reduce el tamaño del texto */
+    padding: 8px; /* Reduce el padding */
+  }
+}
+
+/* Para pantallas medianas (tabletas) */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .products-layout {
+    width: 90%; /* Ocupa el 90% del ancho */
+    padding: 20px;
+  }
+
+  .search-input {
+    max-width: 300px; /* Ajusta el ancho máximo del input */
+  }
+}

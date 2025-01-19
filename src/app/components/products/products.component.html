@@ -1,0 +1,46 @@
+<div class="products-layout">
+  <!-- Input en la esquina superior izquierda -->
+  <div class="table-header">
+    <input type="text" class="search-input" placeholder="Buscar..." [formControl]="searchTerm">
+    <button (click)="addProduct()">Agregar</button>
+  </div>
+
+  <!-- Tabla -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Logo</th>
+          <th>Nombre del producto</th>
+          <th>Descripción</th>
+          <th>Fecha de liberación</th>
+          <th>Fecha de reestructuración</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of filteredProducts$ | async ; track $index; ) {
+        <tr>
+          <td>{{ product.logo}}</td>
+          <td>{{ product.name}}</td>
+          <td>{{ product.description}}</td>
+          <td>{{ product.date_release | date:'dd/MM/yyyy' }}
+          </td>
+          <td>{{ product.date_revision | date:'dd/MM/yyyy'}}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- Selector en la esquina inferior derecha -->
+  <div class="table-footer" >
+    <p>{{ productsLength }} resultados</p>
+    <select class="number-selector" [formControl]="itemsPerPage">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+  </div>
+
+</div>
