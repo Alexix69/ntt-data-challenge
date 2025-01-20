@@ -120,9 +120,6 @@ table th {
   border-radius: 5px;
 }
 
-/* Media Queries para Responsividad */
-
-/* Para pantallas pequeñas (móviles) */
 @media (max-width: 768px) {
   .products-layout {
     width: 95%; /* Reduce el ancho */
@@ -149,7 +146,6 @@ table th {
   }
 }
 
-/* Para pantallas medianas (tabletas) */
 @media (min-width: 768px) and (max-width: 1200px) {
   .products-layout {
     width: 90%; /* Ocupa el 90% del ancho */

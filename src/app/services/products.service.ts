@@ -1,22 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import { Product } from '../interfaces/product.interface';
 
-// Interfaz para la respuesta exitosa
 export interface SuccessResponse<T> {
   message: string;
   data: T;
 }
 
-// Interfaz para manejar los errores comunes
 export interface ErrorResponse {
   name: string;
   message: string;
   stack: string;
 }
 
-// Interfaz para errores de validación
 export interface ValidationErrorResponse {
   name: string;
   message: string;
@@ -24,7 +21,6 @@ export interface ValidationErrorResponse {
   errors: Array<ValidationErrorDetail>;
 }
 
-// Interfaz para los detalles de validación
 export interface ValidationErrorDetail {
   target: Record<string, any>;
   property: string;
@@ -40,17 +36,28 @@ export class ProductsService {
 
   constructor(private http: HttpClient) {}
 
+  private productSubject: BehaviorSubject<Product | null> =
+    new BehaviorSubject<Product | null>(null);
+
+  get product(): Observable<Product | null> {
+    return this.productSubject.asObservable();
+  }
+
+  set productNextValue(product: Product | null) {
+    this.productSubject.next(product);
+  }
+
   getAll(): Observable<SuccessResponse<Product[]> | ErrorResponse> {
     return this.http.get<any>(this.API_URL).pipe(catchError(this.handleError));
   }
 
-  getOne(
+  verify(
     id: string
   ): Observable<
     SuccessResponse<Product> | ErrorResponse | ValidationErrorResponse
   > {
     return this.http
-      .get<any>(`${this.API_URL}/${id}`)
+      .get<any>(`${this.API_URL}/verification/${id}`)
       .pipe(catchError(this.handleError));
   }
 
@@ -86,13 +93,10 @@ export class ProductsService {
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'Ocurrió un error inesperado.';
     if (error.error instanceof ErrorEvent) {
-      // Error del lado del cliente
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Error del lado del servidor
       errorMessage = `Error ${error.status}: ${error.message}`;
     }
-    console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
   }
 }

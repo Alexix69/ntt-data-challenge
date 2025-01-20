@@ -1,11 +1,9 @@
 <div class="products-layout">
-  <!-- Input en la esquina superior izquierda -->
   <div class="table-header">
     <input type="text" class="search-input" placeholder="Buscar..." [formControl]="searchTerm">
     <button (click)="addProduct()">Agregar</button>
   </div>
 
-  <!-- Tabla -->
   <div class="table-container">
     <table>
       <thead>
@@ -25,21 +23,33 @@
           <td>{{ product.description}}</td>
           <td>{{ product.date_release | date:'dd/MM/yyyy' }}
           </td>
-          <td>{{ product.date_revision | date:'dd/MM/yyyy'}}</td>
+          <td class="cell-with-menu">
+            <span>{{ product.date_revision | date: 'dd/MM/yyyy' }}</span>
+            <div class="dropdown">
+              <button class="menu-btn" (click)="toggleMenu($index)">⋮</button>
+              <div class="dropdown-menu" [class.show]="isMenuOpen($index)">
+                <div class="dropdown-item" *ngFor="let option of menuOptions"
+                  (click)="onSelectOption(product, option.value)">
+                  {{ option.label }}
+                </div>
+              </div>
+            </div>
+          </td>
         </tr>
         }
       </tbody>
     </table>
   </div>
-
-
-  <!-- Selector en la esquina inferior derecha -->
-  <div class="table-footer" >
+  <app-delete-modal [title]="deleteModalTitle" [visible]="deleteModalVisible" (close)="closeDeleteModal()"
+    (confirm)="confirmDelete()"></app-delete-modal>
+  <app-modal [title]="modalTitle" [message]="modalMessage" [isSuccess]="isSuccess" [visible]="modalVisible"
+    (close)="closeModal()"></app-modal>
+  <div class="table-footer">
     <p>{{ productsLength }} resultados</p>
     <select class="number-selector" [formControl]="itemsPerPage">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
     </select>
   </div>
 

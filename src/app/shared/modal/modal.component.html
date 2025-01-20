@@ -1,0 +1,14 @@
+<div class="modal" *ngIf="visible">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 [style.color]="isSuccess ? 'green' : 'red'">{{ title }}</h2>
+        <button class="close-btn" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>{{ message }}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" (click)="closeModal()">Aceptar</button>
+      </div>
+    </div>
+  </div>

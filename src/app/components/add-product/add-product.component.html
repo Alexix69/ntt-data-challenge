@@ -1,46 +1,90 @@
 <div class="form-container">
     <div class="form-header">
         <button class="back-button" (click)="goBack()">Atrás</button>
-        <h2>Formulario de Registro</h2>
+        <h2> {{ product ? 'Editar' : 'Formulario de ' }} Registro</h2>
     </div>
     <hr>
-    <form class="registration-form">
+    <form class="registration-form" [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="id">ID</label>
-            <input type="text" id="id" name="id" class="form-control" required />
-            <span class="error-message">ID no válido</span>
+            <input type="text" id="id" name="id" class="form-control" formControlName="id"
+                [ngClass]="getFieldClass('id')" />
+            @if (fieldHasError('id', 'required')) {
+            <span class="error-message">ID es requerido</span>
+            }
+            @if (fieldHasError('id', 'minlength')) {
+            <span class="error-message">ID debe tener al menos 3 caracteres</span>
+            }
+            @if (fieldHasError('id', 'maxlength')) {
+            <span class="error-message">ID debe tener máximo 10 caracteres</span>
+            }
+            @if (fieldHasError('id', 'idExists')) {
+            <span class="error-message">ID ya existe</span>
+            }
         </div>
 
         <div class="form-group">
             <label for="name">Nombre</label>
-            <input type="text" id="name" name="name" class="form-control" required />
+            <input type="text" id="name" name="name" formControlName="name" class="form-control"
+                [ngClass]="getFieldClass('name')" />
+            @if (fieldHasError('name', 'required')) {
+            <span class="error-message">Nombre es requerido</span>
+            }
+            @if (fieldHasError('name', 'minlength')) {
+            <span class="error-message">Nombre debe tener al menos 5 caracteres</span>
+            }
+            @if (fieldHasError('name', 'maxlength')) {
+            <span class="error-message">Nombre debe tener máximo 100 caracteres</span>
+            }
         </div>
 
         <div class="form-group">
             <label for="description">Descripción</label>
-            <input type="text" id="description" name="description" class="form-control" required />
-            <span class="error-message">Este campo es requerido</span>
+            <input type="text" id="description" name="description" formControlName="description" class="form-control"
+                [ngClass]="getFieldClass('description')" />
+            @if (fieldHasError('description', 'required')) {
+            <span class="error-message">Descripción es requerido</span>
+            }
+            @if (fieldHasError('description', 'minlength')) {
+            <span class="error-message">Descripción debe tener al menos 10 caracteres</span>
+            }
+            @if (fieldHasError('description', 'maxlength')) {
+            <span class="error-message">Descripción debe tener máximo 200 caracteres</span>
+            }
         </div>
 
         <div class="form-group">
             <label for="logo">Logo</label>
-            <input type="text" id="logo" name="logo" class="form-control" required />
-            <span class="error-message">Este campo es requerido</span>
+            <input type="text" id="logo" name="logo" formControlName="logo" class="form-control"
+                [ngClass]="getFieldClass('logo')" />
+            @if (fieldHasError('logo', 'required')) {
+            <span class="error-message">Logo es requerido</span>
+            }
         </div>
 
         <div class="form-group">
             <label for="release-date">Fecha Liberación</label>
-            <input type="date" id="release-date" name="release-date" class="form-control" required />
+            <input type="date" id="release-date" name="release-date" formControlName="date_release" class="form-control"
+                [ngClass]="getFieldClass('date_release')" />
+            @if (fieldHasError('date_release', 'required')) {
+            <span class="error-message">Fecha de liberación es requerido</span>
+            }
+            @if (fieldHasError('date_release', 'invalidReleaseDate')) {
+            <span class="error-message">Fecha debe ser mayor o igual a fecha actual</span>
+            }
         </div>
 
         <div class="form-group">
             <label for="revision-date">Fecha Revisión</label>
-            <input type="date" id="revision-date" name="revision-date" class="form-control" disabled />
+            <input type="date" id="revision-date" name="revision-date" formControlName="date_revision"
+                class="form-control" />
         </div>
 
         <div class="form-actions">
-            <button type="reset" class="btn reset-btn">Reiniciar</button>
+            <button type="reset" class="btn reset-btn" (click)="onReset()">Reiniciar</button>
             <button type="submit" class="btn submit-btn">Enviar</button>
         </div>
     </form>
+    <app-modal [title]="modalTitle" [message]="modalMessage" [isSuccess]="isSuccess" [visible]="modalVisible"
+        (close)="closeModal()"></app-modal>
 </div>
